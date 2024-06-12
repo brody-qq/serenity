@@ -37,11 +37,13 @@ ErrorOr<NonnullLockRefPtr<VMObject>> PrivateInodeVMObject::try_clone()
 PrivateInodeVMObject::PrivateInodeVMObject(Inode& inode, FixedArray<RefPtr<PhysicalRAMPage>>&& new_physical_pages, Bitmap dirty_pages)
     : InodeVMObject(inode, move(new_physical_pages), move(dirty_pages))
 {
+    dbgln("PrivateInodeVMObject::PrivateInodeVMObject()");
 }
 
 PrivateInodeVMObject::PrivateInodeVMObject(PrivateInodeVMObject const& other, FixedArray<RefPtr<PhysicalRAMPage>>&& new_physical_pages, Bitmap dirty_pages)
     : InodeVMObject(other, move(new_physical_pages), move(dirty_pages))
 {
+    dbgln("PrivateInodeVMObject::PrivateInodeVMObject()");
 }
 
 PrivateInodeVMObject::~PrivateInodeVMObject() = default;

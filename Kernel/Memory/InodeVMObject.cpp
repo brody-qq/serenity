@@ -57,6 +57,7 @@ bool InodeVMObject::is_page_dirty(size_t page_index) const
 void InodeVMObject::set_page_dirty(size_t page_index, bool is_dirty)
 {
     VERIFY(m_lock.is_locked());
+    dbgln("INODEVMOBJECT: setting page {} to {}", page_index, is_dirty ? "dirty" : "clean");
     m_dirty_pages.set(page_index, is_dirty);
 }
 
@@ -74,6 +75,7 @@ int InodeVMObject::try_release_clean_pages(int page_amount)
         if (!m_dirty_pages.get(i) && m_physical_pages[i]) {
             m_physical_pages[i] = nullptr;
             ++count;
+            dbgln("INODEVMOBJECT: purged page {} from inodevmobject {}", i, this);
         }
     }
     if (count)

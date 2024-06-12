@@ -19,6 +19,7 @@ ErrorOr<FlatPtr> Process::sys$fork(RegisterState& regs)
 {
     VERIFY_NO_PROCESS_BIG_LOCK(this);
     TRY(require_promise(Pledge::proc));
+    dbgln("FORK");
 
     auto credentials = this->credentials();
     auto child_and_first_thread = TRY(Process::create_with_forked_name(credentials->uid(), credentials->gid(), pid(), m_is_kernel_process, current_directory(), executable(), tty(), this));
