@@ -42,11 +42,13 @@ ErrorOr<NonnullLockRefPtr<VMObject>> SharedInodeVMObject::try_clone()
 SharedInodeVMObject::SharedInodeVMObject(Inode& inode, FixedArray<RefPtr<PhysicalRAMPage>>&& new_physical_pages, Bitmap dirty_pages)
     : InodeVMObject(inode, move(new_physical_pages), move(dirty_pages))
 {
+    dbgln("SharedInodeVMObject::SharedInodeVMObject() {}", this);
 }
 
 SharedInodeVMObject::SharedInodeVMObject(SharedInodeVMObject const& other, FixedArray<RefPtr<PhysicalRAMPage>>&& new_physical_pages, Bitmap dirty_pages)
     : InodeVMObject(other, move(new_physical_pages), move(dirty_pages))
 {
+    dbgln("SharedInodeVMObject::SharedInodeVMObject() {}", this);
 }
 
 ErrorOr<void> SharedInodeVMObject::sync(off_t offset_in_pages, size_t pages)

@@ -15,6 +15,7 @@ ErrorOr<FlatPtr> Process::sys$purge(int mode)
 {
     VERIFY_PROCESS_BIG_LOCK_ACQUIRED(this);
     TRY(require_no_promises());
+    dbgln("PURGE");
     auto credentials = this->credentials();
     if (!credentials->is_superuser())
         return EPERM;
